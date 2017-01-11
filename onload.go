@@ -4,9 +4,7 @@
 // for GopherJS. It is adapted from http://stackoverflow.com/a/9899701/13860
 package onload
 
-import (
-	"github.com/gopherjs/gopherjs/js"
-)
+import "github.com/gopherjs/gopherjs/js"
 
 var readyList []func() = make([]func(), 0, 1)
 var readyFired bool = false
@@ -14,7 +12,7 @@ var readyEventHandlersInstalled bool = false
 
 // Ready registers a function to fire when the page is loaded. This is effectively
 // the same as jQuery's $.ready(), but written in Go, and without the bloat of jQuery.
-// If Ready() may be called multiple times, and once the document is ready, registered
+// Ready() may be called multiple times, and once the document is ready, registered
 // functions will be called in registration order.
 func Ready(fn func()) {
 	if readyFired {
