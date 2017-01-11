@@ -1,6 +1,6 @@
 // +build js
 
-// package onload provides a minimal, cross-browser document onload trigger
+// Package onload provides a minimal, cross-browser document onload trigger
 // for GopherJS. It is adapted from http://stackoverflow.com/a/9899701/13860
 package onload
 
@@ -26,7 +26,7 @@ func Ready(fn func()) {
 		return
 	}
 	if !readyEventHandlersInstalled {
-		if doc.Get("addEventListener") != nil {
+		if doc.Get("addEventListener") != js.Undefined {
 			// first choice is DOMContentLoaded event
 			doc.Call("addEventListener", "DOMContentLoaded", ready, false)
 			// backup is window load event
@@ -48,6 +48,7 @@ func ready() {
 		for _, readyFunc := range readyList {
 			readyFunc()
 		}
+		readyList = nil
 	}
 }
 
